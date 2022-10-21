@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, toRefs } from 'vue'
+
 import { Node } from '@/core/Node'
 
 // Properties
@@ -11,7 +12,6 @@ const props = defineProps({
 })
 // Emits
 const { node } = toRefs(props)
-console.log('displaying', node)
 </script>
 
 <template>
@@ -20,11 +20,14 @@ console.log('displaying', node)
 		<TheFormComponent v-for="child of node.children" :key="child.code" :node="child" />
 	</div>
 	<!-- Input -->
-	<input v-else-if="node.type === 'input'" :id="node.code" type="text">
+	<input v-else-if="node.type === 'input'" :id="node.code" type="text" placeholder="Введите текст">
 	<!-- Date picker -->
 	<input v-else-if="node.type === 'datepicker'" :id="node.code" type="date">
 	<!-- List (select) -->
 	<select v-else-if="node.type === 'list'" :id="node.code">
+		<option v-for="option of node.listdata" :key="option.key" :value="option.key">
+			{{ option.value }}
+		</option>
 	</select>
 
 	<div v-else class="alert alert__error">

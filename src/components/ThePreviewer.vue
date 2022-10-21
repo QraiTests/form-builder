@@ -18,18 +18,17 @@ const elements = ref([])
 // Build everything
 function build(value) {
 	try {
-		let elements = JSON.parse(value)
+		let json = JSON.parse(value)
 
 		// Check that is array
-		if(!Array.isArray(elements)) {
+		if(!Array.isArray(json)) {
 			emit('error', 'JSON должен быть массивом')
 			return
 		}
 
 		// Interpretate flat array to tree
-		let result = Interpreter.interprete(elements)
-		elements.values = result
-		console.log(elements.values)
+		let result = Interpreter.interprete(json)
+		elements.value = result
 	}
 	catch (e) {
 		// JSON.parse throwed error

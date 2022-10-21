@@ -12,9 +12,10 @@ const error = ref('')
 const preview = ref(null)
 
 function showPreview() {
+	// Erase error
 	error.value = ''
 	
-	// Update json
+	// Update form
 	preview.value.build(json.value)
 }
 </script>
