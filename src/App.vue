@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 
-import TheEditor from './components/TheEditor.vue'
 import ThePreviewer from './components/ThePreviewer.vue'
 
 // JSON
@@ -27,13 +26,13 @@ function showPreview() {
 		<div v-if="error.length > 0" class="alert alert__error">
 			{{ error }}
 		</div>
-		<TheEditor v-model="json" placeholder="Введите JSON объект" />
+		<textarea class="editor" v-model="json" placeholder="Введите JSON объект"></textarea>
 		<button @click="showPreview" class="button button__accent">Показать</button>
 	</div>
 	<!-- Result -->
 	<div class="container container__result">
 		<h1>Форма</h1>
-		<ThePreviewer ref="preview" @error="error = $event" :value="previewJson" />
+		<ThePreviewer ref="preview" @error="error = $event" />
 	</div>
 </template>
 
@@ -48,6 +47,13 @@ h1 {
 
 	margin-top: calc(var(--spacing-basis) * 20);
 	margin-bottom: var(--spacing-2);
+
+	.editor {
+		width: 100%;
+		height: calc(var(--spacing-basis) * 16);
+
+		background-color: var(--color-2);
+	}
 
 	button {
 		margin-top: var(--spacing-2);
