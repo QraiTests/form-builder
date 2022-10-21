@@ -19,26 +19,6 @@ export class Node {
 		this.children = []
 	}
 
-	// Create node
-	static create(type, code, ...opts) {
-		if(typeof code !== 'string') {
-			throw new Error(`Invalid code "${code}", expected string`)
-		}
-
-		switch(type) {
-			case 'container':
-				return new ContainerNode(code, ...opts)
-			case 'input':
-				return new InputNode(code, ...opts)
-			case 'datepicker':
-				return new DatePickerNode(code, ...opts)
-			case 'list':
-				return new ListNode(code, ...opts)
-			default:
-				throw new Error(`Invalid type "${type}", expected: ${NodeType.join(' or ')}`)
-		}
-	}
-
 	addChildren(node) {
 		if((node instanceof Node) === false) {
 			throw new Error(`Invalid node "${node}", expected instance of Node`)
