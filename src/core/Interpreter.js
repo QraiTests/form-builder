@@ -45,7 +45,12 @@ export default new (class Interpreter {
 			}
 			else {
 				let parent = find(node.parent)
-				parent.addChildren(create(node))
+				if(parent) {
+					parent.addChildren(create(node))
+				}
+				else {
+					throw new Error('Please define parent first, before adding childrens')
+				}
 			}
 		}
 
